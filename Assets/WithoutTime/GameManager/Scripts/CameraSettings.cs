@@ -23,6 +23,7 @@ namespace Dplds.Settings
         {
             //_camera.allowHDR = Convert.ToBoolean( PlayerPrefs.GetInt(NamePrefs.HDR + GameManagement.key));
             // _camera.renderingPath = (RenderingPath)PlayerPrefs.GetInt("Rendering Path"+GameManager.key);
+            hdAdditionalCameraData.allowDynamicResolution = Convert.ToBoolean(PlayerPrefs.GetInt(NamePrefs.DYNAMICRESOLUTION + GameManagement.key));
             hdAdditionalCameraData.antialiasing = (HDAdditionalCameraData.AntialiasingMode)PlayerPrefs.GetInt(NamePrefs.ANTIALIASING + GameManagement.key);
         }
         private void OnDestroy()

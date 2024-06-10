@@ -1,10 +1,12 @@
 using Dplds.Core;
 using Dplds.Inputs;
+using System;
 using UnityEngine;
 namespace Dplds.Gameplay
 {
     public class Player : MonoBehaviour, IDamageable
     {
+        public static event Action OnDeath;
         #region Properties
         public CameraFps CameraFps { get => cameraFps; }
         public float Health => health;
@@ -12,8 +14,8 @@ namespace Dplds.Gameplay
         #region Fields Player
         [Header("Player")]
         [SerializeField] private float health = 100;
+        [SerializeField] private Weapon weapon;
         private float currentHealth;
-        private int typeGround;
         #endregion
         #region Camera
         private CameraFps cameraFps;
@@ -25,6 +27,12 @@ namespace Dplds.Gameplay
         }
         void Start()
         {
+            
+            #region Clear List
+            Inventory.weapons.Clear();
+            Inventory.idButton.Clear();
+            Inventory.idDoors.Clear(); 
+            #endregion
             currentHealth = health;
             CursorManagement.Instance.ShowCursor(false);
         }
@@ -44,6 +52,7 @@ namespace Dplds.Gameplay
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
+                 OnDeath?.Invoke();
                 SceneManagement.Instance.RestartLevel();
             }
         }

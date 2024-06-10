@@ -5,6 +5,8 @@ namespace Dplds.Gameplay
 {
     public class Weapon : MonoBehaviour
     {
+        public bool CanShoot { get => canShoot; set => canShoot = value; }
+        #region Fields
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private int idWeapon;
         [SerializeField] private float distanceCheckObj = 15.0f;
@@ -15,7 +17,10 @@ namespace Dplds.Gameplay
         private RaycastHit _hit;
         private Animator animator;
         private AnimatorBehaviour animatorBehaviour;
-        private bool canShoot;
+        private bool canShoot; 
+        #endregion
+
+       
         void Awake()
         {
             _camera = Camera.main.transform;
@@ -24,9 +29,10 @@ namespace Dplds.Gameplay
         private void Start()
         {
             CheckHasWeapon();
+            
             Item.OnGetItem += CheckHasWeapon;
         }
-        void CheckHasWeapon()
+     public   void CheckHasWeapon()
         {
             if (!Inventory.weapons.Contains(idWeapon))
             {
@@ -39,7 +45,7 @@ namespace Dplds.Gameplay
                 meshRenderer.enabled = true;
             }
         }
-        public void BackTime(ref float rewind,ref float forward)
+        public void BackTime(ref float rewind,ref float forward,ref float stop)
         {
             if (canShoot)
             {
@@ -58,7 +64,9 @@ namespace Dplds.Gameplay
                                 animator.enabled = true;
                             int animationReverse = -1;
                             animator.SetFloat("Speed", animationReverse);
+#if UNITY_EDITOR
                             Debug.Log("Rewind");
+#endif
                         }
 
                     }
@@ -70,8 +78,17 @@ namespace Dplds.Gameplay
                                 animator.enabled = true;
                             int animationReverse = 1;
                             animator.SetFloat("Speed", animationReverse);
+#if UNITY_EDITOR
                             Debug.Log("Forward");
+#endif
                         }
+                    }
+                    else if (stop > 0.1f)
+                    {
+                        animator.SetFloat("Speed", 0);
+#if UNITY_EDITOR
+                        Debug.Log("Stop");
+#endif
                     }
                 }
             }
@@ -109,9 +126,14 @@ namespace Dplds.Gameplay
             }
             return check;
         }
+        private void OnLevelWasLoaded(int level)
+        {
+            CheckHasWeapon();
+        }
         private void OnDestroy()
         {
             Item.OnGetItem -= CheckHasWeapon;
+           // Player.OnDeath -= CheckHasWeapon;
         }
     }
 }

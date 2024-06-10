@@ -60,12 +60,12 @@ namespace Dplds.Gameplay
                 if (currentAnimation > 0)
                 {
                     if (boxCollider != null)
-                        boxCollider.enabled = true;
+                        boxCollider.isTrigger = false;
                 }
                 else
                 {
                     if (boxCollider != null)
-                        boxCollider.enabled = false;
+                        boxCollider.isTrigger = true;
                 }
             }
             #endregion
@@ -88,6 +88,10 @@ namespace Dplds.Gameplay
                     }
                 }
             }
+        }
+        private void OnEnable()
+        {
+            animator.Play(animator.GetAnimatorTransitionInfo(0).fullPathHash, 0, initial);
         }
     }
 }

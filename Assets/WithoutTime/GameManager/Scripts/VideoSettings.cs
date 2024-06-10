@@ -3,51 +3,56 @@ using Dplds.Storage;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.Rendering;
 
 namespace Dplds.Settings
 
 {
     public class VideoSettings : MonoBehaviour
     {
-        public enum TypeAa { Off, Fxaa, Smaa, Taa }
+        public enum TypeAa { Off, Fxaa, Taa, Smaa }
         public static event Action OnChangeValue;
+
         [SerializeField] private GameObject[] disableSettings;
+        #region Display
         [SerializeField] private TextMeshProUGUI maxFramesValue;
-        [SerializeField] private TextMeshProUGUI vsyncValue;
+        [SerializeField] private TextMeshProUGUI vsyncValue; 
+        [SerializeField] private TextMeshProUGUI allowDynamicResolutionValue;
+        [SerializeField] private TextMeshProUGUI dynamicResolutionValue;
+        
         [SerializeField] private TextMeshProUGUI AaValue;
+        #endregion
+        #region Graphics
+        [SerializeField] private TextMeshProUGUI motionBlurValue;
         [SerializeField] private TextMeshProUGUI bloomValue;
-        [SerializeField] private TextMeshProUGUI aoValue;
-        [SerializeField] private TextMeshProUGUI hdrValue;
+        [SerializeField] private TextMeshProUGUI ssrValue;
+        [SerializeField] private TextMeshProUGUI sunShaftValue; 
+        #endregion
         private TypeAa typeAa;
         private int[] maxFrameRate = new int[6] { 30, 60, 120, 144, 240, -1 };
         private int indexAa = 0;
         private int indexMaxFrameRate;
+        private int dynamicResolution;
+        private GameObject dynamicResolutionGameObject;
+        private event Action OnChangeDynamicresolutionValue;
         private void Awake()
         {
             OnChangeValue += LoadValueState;
             indexAa = PlayerPrefs.GetInt(NamePrefs.ANTIALIASING + GameManagement.key);
             indexMaxFrameRate = PlayerPrefs.GetInt(NamePrefs.MAXFRAMES + GameManagement.key);
-            if (SystemInfo.deviceType == DeviceType.Handheld)
-            {
-                for (int i = 0; i < disableSettings.Length; i++)
-                {
-                    disableSettings[i].SetActive(false);
-                }
-            }
-            else if (SystemInfo.deviceType == DeviceType.Console)
-            {
-                for (int i = 0; i < disableSettings.Length; i++)
-                {
-                    disableSettings[i].SetActive(false);
-                }
-            }
+            dynamicResolution = PlayerPrefs.GetInt(NamePrefs.DYNAMICRESOLUTIONVALUE + GameManagement.key);
+            dynamicResolutionGameObject = dynamicResolutionValue.transform.parent.gameObject;
         }
         private void Start()
         {
             LoadValueState();
+            UpdateDynamicResolutionValue();
+            OnChangeDynamicresolutionValue += UpdateDynamicResolutionValue;
         }
         void LoadValueState()
         {
+            #region Display
             if (vsyncValue != null)
             {
                 if (PlayerPrefs.GetInt(NamePrefs.VSYNC + GameManagement.key) == 1)
@@ -73,15 +78,41 @@ namespace Dplds.Settings
                 typeAa = (TypeAa)indexAa;
                 AaValue.text = typeAa.ToString();
             }
-            if (hdrValue != null)
+            if (allowDynamicResolutionValue != null)
             {
-                if (PlayerPrefs.GetInt(NamePrefs.HDR + GameManagement.key) == 1)
+                if (PlayerPrefs.GetInt(NamePrefs.DYNAMICRESOLUTION + GameManagement.key) == 1)
                 {
-                    hdrValue.text = "On";
+                    allowDynamicResolutionValue.text = "On";
+                    dynamicResolutionGameObject.SetActive(true);
                 }
                 else
                 {
-                    hdrValue.text = "Off";
+                    allowDynamicResolutionValue.text = "Off";
+                    dynamicResolutionGameObject.SetActive(false);
+                }
+            }
+          /*  if (dynamicResolutionValue != null)
+            {
+                if (PlayerPrefs.GetInt(NamePrefs.DYNAMICRESOLUTIONVALUE + GameManagement.key) == 1)
+                {
+                    allowDynamicResolutionValue.text = "On";
+                }
+                else
+                {
+                    allowDynamicResolutionValue.text = "Off";
+                }
+            }*/
+            #endregion
+            #region Graphics
+            if (motionBlurValue != null)
+            {
+                if (PlayerPrefs.GetInt(NamePrefs.MOTIONBLUR + GameManagement.key) == 1)
+                {
+                    motionBlurValue.text = "On";
+                }
+                else
+                {
+                    motionBlurValue.text = "Off";
                 }
             }
             if (bloomValue != null)
@@ -95,19 +126,69 @@ namespace Dplds.Settings
                     bloomValue.text = "Off";
                 }
             }
-            if (aoValue != null)
+            if (ssrValue != null)
             {
-                if (PlayerPrefs.GetInt(NamePrefs.AO + GameManagement.key) == 1)
+                if (PlayerPrefs.GetInt(NamePrefs.SSR + GameManagement.key) == 1)
                 {
-                    aoValue.text = "On";
+                    ssrValue.text = "On";
                 }
                 else
                 {
-                    aoValue.text = "Off";
+                    ssrValue.text = "Off";
                 }
             }
-
+            if (sunShaftValue != null)
+            {
+                if (PlayerPrefs.GetInt(NamePrefs.SUNSHAFT + GameManagement.key) == 1)
+                {
+                    sunShaftValue.text = "On";
+                }
+                else
+                {
+                    sunShaftValue.text = "Off";
+                }
+            }
+            #endregion
+           
         }
+        #region Dynamic resolution
+        public void ChangeDynamicResolutionValueUp()
+        {
+            if (dynamicResolution < 100)
+            {
+                dynamicResolution += 5;
+                //dynamicResolution = indexDynamicResolution;
+                PlayerPrefs.SetInt(NamePrefs.DYNAMICRESOLUTIONVALUE+GameManagement.key, dynamicResolution);
+                PlayerPrefs.Save();
+                OnChangeDynamicresolutionValue?.Invoke();
+            }
+        }
+        public void ChangeDynamicResolutionValueDown()
+        {
+            if (dynamicResolution > 50)
+            {
+                dynamicResolution -= 5;
+                PlayerPrefs.SetInt(NamePrefs.DYNAMICRESOLUTIONVALUE + GameManagement.key, dynamicResolution);
+                PlayerPrefs.Save();
+                OnChangeDynamicresolutionValue?.Invoke();
+            }
+        }
+        void UpdateDynamicResolutionValue()
+        {
+            dynamicResolutionValue.text = dynamicResolution.ToString();
+
+            DynamicResolutionValueMethod();
+        }
+        private void DynamicResolutionValueMethod()
+        {
+            RenderPipelineSettings _renderPipelineSettings = GameManagement.Instance.PipelineAsset.currentPlatformRenderPipelineSettings;
+            GlobalDynamicResolutionSettings dynamicResolutionSettings = GameManagement.Instance.PipelineAsset.currentPlatformRenderPipelineSettings.dynamicResolutionSettings;
+            _renderPipelineSettings.dynamicResolutionSettings = dynamicResolutionSettings;
+            _renderPipelineSettings.dynamicResolutionSettings.forcedPercentage = dynamicResolution;
+            GameManagement.Instance.PipelineAsset.currentPlatformRenderPipelineSettings = _renderPipelineSettings;
+
+        } 
+        #endregion
         #region PostProcessing
         public void OnChangeQualityGraphics(string nameSettings = "Bloom")
         {
@@ -127,6 +208,7 @@ namespace Dplds.Settings
             }
         }
         #endregion
+        #region Display
         public void MaxFramesDown()
         {
             if (indexMaxFrameRate > 0)
@@ -167,11 +249,13 @@ namespace Dplds.Settings
                 typeAa = (TypeAa)indexAa;
                 OnChangeValue?.Invoke();
             }
-        }
+        } 
+        #endregion
 
         private void OnDestroy()
         {
             OnChangeValue -= LoadValueState;
+            OnChangeDynamicresolutionValue -= UpdateDynamicResolutionValue; ;
         }
     }
 }

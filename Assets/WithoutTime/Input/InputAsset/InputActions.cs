@@ -181,6 +181,15 @@ namespace Dplds.Inputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stop"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4f296ac-162e-4d4a-8b34-11344fad58d6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -744,6 +753,28 @@ namespace Dplds.Inputs
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fa5b127-11e4-4750-97db-0a0c97f22c5a"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Stop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac1f4957-c9ea-4b1d-b7e0-c53eca3f1cdf"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Stop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -836,6 +867,7 @@ namespace Dplds.Inputs
             m_Player_Rewind = m_Player.FindAction("Rewind", throwIfNotFound: true);
             m_Player_Forward = m_Player.FindAction("Forward", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Stop = m_Player.FindAction("Stop", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_x = m_UI.FindAction("x", throwIfNotFound: true);
@@ -917,6 +949,7 @@ namespace Dplds.Inputs
         private readonly InputAction m_Player_Rewind;
         private readonly InputAction m_Player_Forward;
         private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Stop;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
@@ -938,6 +971,7 @@ namespace Dplds.Inputs
             public InputAction @Rewind => m_Wrapper.m_Player_Rewind;
             public InputAction @Forward => m_Wrapper.m_Player_Forward;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            public InputAction @Stop => m_Wrapper.m_Player_Stop;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -998,6 +1032,9 @@ namespace Dplds.Inputs
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Stop.started += instance.OnStop;
+                @Stop.performed += instance.OnStop;
+                @Stop.canceled += instance.OnStop;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1053,6 +1090,9 @@ namespace Dplds.Inputs
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @Stop.started -= instance.OnStop;
+                @Stop.performed -= instance.OnStop;
+                @Stop.canceled -= instance.OnStop;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1153,6 +1193,7 @@ namespace Dplds.Inputs
             void OnRewind(InputAction.CallbackContext context);
             void OnForward(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnStop(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

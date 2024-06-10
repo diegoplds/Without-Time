@@ -27,6 +27,7 @@ namespace Dplds.Inputs
         }
         void Inputs()
         {
+            stop = inputActions.Player.Stop.ReadValue<float>();
             interact = inputActions.Player.Interact.triggered;
             move = inputActions.Player.Move.ReadValue<Vector2>();
             jump = inputActions.Player.Jump.triggered;

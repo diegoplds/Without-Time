@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8e8c728b4db6f49aa8436f04de1deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeProfiles: []
+  volumeProfile: {fileID: 11400000, guid: 14b392ee213d25a48b1feddbd9f5a9be, type: 2}
+  pipelineAsset: {fileID: 11400000, guid: 36dd385e759c96147b6463dcd1149c11, type: 2}
 --- !u!114 &2367729006863593450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +163,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6a4f21b8-a59d-471b-a223-42654e50288d
     m_ActionName: UI/x[/XInputControllerWindows/buttonWest,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d637eb5b-b31c-4bbe-9359-77019f7d9ca5
+    m_ActionName: Player/Rewind[/XInputControllerWindows/leftTrigger,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f3bd39bb-a943-4094-844d-829241f64817
+    m_ActionName: Player/Forward[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04786360-4295-458b-9d80-081695fe27d6
+    m_ActionName: Player/Interact[/Keyboard/f,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4f296ac-162e-4d4a-8b34-11344fad58d6
+    m_ActionName: Player/Stop[/Mouse/middleButton,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

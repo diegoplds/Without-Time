@@ -11,8 +11,8 @@ namespace Dplds.Core
     {
         #region Properties
         public PlayerInput PlayerInput { get => playerInput; }
-        public VolumeProfile[] VolumeProfile { get => volumeProfiles; }
-        public HDRenderPipeline RendererData { get => rendererData; }
+        public VolumeProfile VolumeProfile { get => volumeProfile; }
+        public HDRenderPipelineAsset PipelineAsset { get => pipelineAsset; }
         #endregion
         #region Events
         public static event Action OnPause;
@@ -25,8 +25,8 @@ namespace Dplds.Core
         #endregion
 
         [Header("Game Manager")]
-        [SerializeField] private VolumeProfile[] volumeProfiles;
-        [SerializeField] private HDRenderPipeline rendererData;
+        [SerializeField] private VolumeProfile volumeProfile;
+        [SerializeField] private HDRenderPipelineAsset pipelineAsset;
         private PlayerInput playerInput;
         void Awake()
         {
@@ -43,8 +43,13 @@ namespace Dplds.Core
         private void Start()
         {
             TryGetComponent(out playerInput);
-            SavePrefsResolution();
+
+            #region Wsa
+#if UNITY_WSA
+            SavePrefsResolution(); 
             GetResolutionPrefs();
+#endif 
+            #endregion
 
             
             pause = false;
@@ -63,8 +68,6 @@ namespace Dplds.Core
         }
         void SavePrefsResolution()
         {
-            #region WSA
-#if UNITY_WSA
             if (!PlayerPrefs.HasKey("width"))
             {
                 PlayerPrefs.SetInt("width", Screen.resolutions[Screen.resolutions.Length - 1].width);
@@ -73,8 +76,6 @@ namespace Dplds.Core
             {
                 PlayerPrefs.SetInt("height", Screen.resolutions[Screen.resolutions.Length - 1].height);
             }
-#endif
-            #endregion
         }
         void GetResolutionPrefs()
         {
@@ -82,12 +83,8 @@ namespace Dplds.Core
             {
                 if (PlayerPrefs.HasKey("width") && PlayerPrefs.HasKey("height"))
                 {
-                    #region WSA
-#if UNITY_WSA
                     #region RESOLUTION
                     Screen.SetResolution(PlayerPrefs.GetInt("width"), PlayerPrefs.GetInt("height"), true);
-                    #endregion
-#endif
                     #endregion
                 }
             }

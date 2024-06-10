@@ -14,9 +14,13 @@ namespace Dplds.Storage
         #endregion
         #region Graphics
         public const string ANTIALIASING = "AaQuality";
-        public const string HDR = "Hdr";
+  
+        public const string DYNAMICRESOLUTION = "Dynamic Resolution";
+        public const string DYNAMICRESOLUTIONVALUE = "Dynamic Resolution Value";
         public const string BLOOM = "Bloom";
-        public const string AO = "Ao";
+        public const string SSR = "Ssr";
+        public const string MOTIONBLUR = "Motion Blur";
+        public const string SUNSHAFT = "Sun Shaft";
         #endregion
         #region Inputs
         public const string CONTROLLERSENS = "Controller Sens";
@@ -30,8 +34,11 @@ namespace Dplds.Storage
     public class SavePrefs : MonoBehaviour
     {
         public static event Action OnChangeVolume;
-        private Bloom bloomIsometric;
-        private Bloom bloomPerspective;
+        private ScreenSpaceReflection ssr;
+        private Bloom bloom;
+        private Fog sunShaft;
+        private MotionBlur motionBlur;
+
         private int[] maxFrames = new int[6] { 30, 60, 120, 144, 240, -1 };
 
 
@@ -84,119 +91,47 @@ namespace Dplds.Storage
             }
             #endregion
             #endregion
-            //save locale
             //save Desktop
             #region Desktop
             if (SystemInfo.deviceType == DeviceType.Desktop)
             {
                 if (!PlayerPrefs.HasKey(NamePrefs.MAXFRAMES + GameManagement.key))
-                    PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 5);
+                    PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 5);//Unlimited
+                //
                 if (!PlayerPrefs.HasKey(NamePrefs.VSYNC + GameManagement.key))
                     PlayerPrefs.SetInt(NamePrefs.VSYNC + GameManagement.key, 0);
+                //
                 if (!PlayerPrefs.HasKey(NamePrefs.ANTIALIASING + GameManagement.key))
-                    PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 3);
-                if (!PlayerPrefs.HasKey(NamePrefs.HDR + GameManagement.key))
-                    PlayerPrefs.SetInt(NamePrefs.HDR + GameManagement.key, 1);
+                    PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 2);
+                //
+                if (!PlayerPrefs.HasKey(NamePrefs.DYNAMICRESOLUTION + GameManagement.key))
+                    PlayerPrefs.SetInt(NamePrefs.DYNAMICRESOLUTION + GameManagement.key, 0);
+                //
+                if (!PlayerPrefs.HasKey(NamePrefs.DYNAMICRESOLUTIONVALUE + GameManagement.key))
+                    PlayerPrefs.SetInt(NamePrefs.DYNAMICRESOLUTIONVALUE + GameManagement.key, 70);
+                //
                 if (!PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
                     PlayerPrefs.SetInt(NamePrefs.BLOOM + GameManagement.key, 1);
-                if (!PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
-                    PlayerPrefs.SetInt(NamePrefs.AO + GameManagement.key, 1);
+                //
+                if (!PlayerPrefs.HasKey(NamePrefs.SSR + GameManagement.key))
+                    PlayerPrefs.SetInt(NamePrefs.SSR + GameManagement.key, 1);
+                //
+                if (!PlayerPrefs.HasKey(NamePrefs.MOTIONBLUR + GameManagement.key))
+                    PlayerPrefs.SetInt(NamePrefs.MOTIONBLUR + GameManagement.key, 1);
+                //
+                if (!PlayerPrefs.HasKey(NamePrefs.SUNSHAFT + GameManagement.key))
+                    PlayerPrefs.SetInt(NamePrefs.SUNSHAFT + GameManagement.key, 1);
                 QualitySettings.SetQualityLevel(0);//desktop
-            }
-            #endregion
-            // Save XbOne & Save XbSeries
-            #region Console
-            if (SystemInfo.deviceType == DeviceType.Console)
-            {
-                #region Xbone
-                if (CheckConsole.typeConsole == CheckConsole.TypeConsole.XbOne)
-                {
-                    if (!PlayerPrefs.HasKey(NamePrefs.MAXFRAMES + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 1);//60 fps
-                    if (!PlayerPrefs.HasKey(NamePrefs.VSYNC + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.VSYNC + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.ANTIALIASING + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 3);
-                    if (!PlayerPrefs.HasKey(NamePrefs.HDR + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.HDR + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.BLOOM + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.AO + GameManagement.key, 1);
-                    QualitySettings.SetQualityLevel(0);
-
-                    Screen.SetResolution(1920, 1080, true);
-                }
-                #endregion
-                #region XboneX
-                if (CheckConsole.typeConsole == CheckConsole.TypeConsole.XbOneX)
-                {
-                    if (!PlayerPrefs.HasKey(NamePrefs.MAXFRAMES + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.VSYNC + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.VSYNC + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.ANTIALIASING + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 3);
-                    if (!PlayerPrefs.HasKey(NamePrefs.HDR + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.HDR + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.BLOOM + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.AO + GameManagement.key, 1);
-                    QualitySettings.SetQualityLevel(0);
-
-                    Screen.SetResolution(3840, 2160, true);//4k resolution
-                }
-
-                #endregion
-                #region XbSeriesS
-                if (CheckConsole.typeConsole == CheckConsole.TypeConsole.XbSeriesS)
-                {
-                    if (!PlayerPrefs.HasKey(NamePrefs.MAXFRAMES + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.VSYNC + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.VSYNC + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.ANTIALIASING + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 3);
-                    if (!PlayerPrefs.HasKey(NamePrefs.HDR + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.HDR + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.BLOOM + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.AO + GameManagement.key, 1);
-                    QualitySettings.SetQualityLevel(0);
-
-                    Screen.SetResolution(2560, 1440, true);//2.5k resolution
-                }
-                #endregion
-                #region XbseriesX
-                if (CheckConsole.typeConsole == CheckConsole.TypeConsole.XbSeriesSX)
-                {
-                    if (!PlayerPrefs.HasKey(NamePrefs.MAXFRAMES + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.MAXFRAMES + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.VSYNC + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.VSYNC + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.ANTIALIASING + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.ANTIALIASING + GameManagement.key, 3);
-                    if (!PlayerPrefs.HasKey(NamePrefs.HDR + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.HDR + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.BLOOM + GameManagement.key, 1);
-                    if (!PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
-                        PlayerPrefs.SetInt(NamePrefs.AO + GameManagement.key, 1);
-                    QualitySettings.SetQualityLevel(0);
-
-                    Screen.SetResolution(3840, 2160, true);//4k resolution
-                }
-                #endregion
             }
             #endregion
         }
         void GetPostProcess()
         {
-            GameManagement.Instance.VolumeProfile[0].TryGet(out bloomIsometric);//isometric
-            GameManagement.Instance.VolumeProfile[1].TryGet(out bloomPerspective);//perspective
-            
+            GameManagement.Instance.VolumeProfile.TryGet(out bloom);
+            GameManagement.Instance.VolumeProfile.TryGet(out motionBlur);
+            GameManagement.Instance.VolumeProfile.TryGet(out ssr);
+            GameManagement.Instance.VolumeProfile.TryGet(out sunShaft);
+
 
             // ao.SetActive(false);
         }
@@ -220,31 +155,28 @@ namespace Dplds.Storage
             #region bloom
             if (PlayerPrefs.HasKey(NamePrefs.BLOOM + GameManagement.key))
             {
-                if (PlayerPrefs.GetInt(NamePrefs.BLOOM + GameManagement.key) == 1)
-                {
-                    bloomIsometric.active = true;
-                    bloomPerspective.active = true;
-                }
-                else
-                {
-                    bloomIsometric.active = false;
-                    bloomPerspective.active = false;
-                }
+                bloom.active = Convert.ToBoolean(PlayerPrefs.GetInt(NamePrefs.BLOOM + GameManagement.key));
             }
             #endregion
-            #region Ao
-           /* if (PlayerPrefs.HasKey(NamePrefs.AO + GameManagement.key))
+            #region motion Blur
+            if (PlayerPrefs.HasKey(NamePrefs.MOTIONBLUR + GameManagement.key))
             {
-                if (PlayerPrefs.GetInt(NamePrefs.AO + GameManagement.key) == 1)
-                {
-                    ao.SetActive(true);
-                }
-                else
-                {
-                    ao.SetActive(false);
-                }
-            }*/
+                motionBlur.active = Convert.ToBoolean(PlayerPrefs.GetInt(NamePrefs.MOTIONBLUR + GameManagement.key));
+            }
             #endregion
+            #region ssr
+            if (PlayerPrefs.HasKey(NamePrefs.SSR + GameManagement.key))
+            {
+                ssr.enabled.value = Convert.ToBoolean(PlayerPrefs.GetInt(NamePrefs.SSR + GameManagement.key));
+            }
+            #endregion
+            #region sun shaft
+            if (PlayerPrefs.HasKey(NamePrefs.SUNSHAFT + GameManagement.key))
+            {
+                sunShaft.active = Convert.ToBoolean(PlayerPrefs.GetInt(NamePrefs.SUNSHAFT + GameManagement.key));
+            }
+            #endregion
+
         }
     }
 }

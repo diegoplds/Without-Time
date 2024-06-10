@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/WithoutTime/Scenes/Preloader.unity
+    guid: 6a37023da83243a47925c4cbbb30c949
+  - enabled: 1
+    path: Assets/WithoutTime/Scenes/Menu.unity
+    guid: 79840b265ae91c946bb70cec701af48d
+  - enabled: 1
     path: Assets/WithoutTime/Scenes/Main_Scene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 1

@@ -23,5 +23,9 @@ namespace Dplds.Gameplay
                 audioSource.PlayOneShot(imapactSoundFx);
             }
         }
+        public void StopSound()
+        {
+            audioSource.Stop();
+        }
     }
 }

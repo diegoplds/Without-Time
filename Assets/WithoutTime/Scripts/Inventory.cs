@@ -7,5 +7,6 @@ namespace Dplds.Gameplay
     {
         public static List<int>idDoors = new List<int>();
         public static List<int>weapons = new List<int>();
+        public static List<int> idButton = new List<int>();
     }
 }

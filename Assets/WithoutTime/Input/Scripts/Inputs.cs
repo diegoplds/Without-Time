@@ -30,7 +30,7 @@ namespace Dplds.Inputs
         {
             GameManagement.Instance.Pause(ref InputMaster.pause, ref InputMaster.cancel);
             movement.HandleMovement(ref InputMaster.move, ref InputMaster.run, ref InputMaster.jump);
-            weapon.BackTime(ref InputMaster.rewind, ref InputMaster.forward);
+            weapon.BackTime(ref InputMaster.rewind, ref InputMaster.forward,ref InputMaster.stop);
             interact.CheckObjectInteractable(ref InputMaster.interact);
         }
         private void LateUpdate()
