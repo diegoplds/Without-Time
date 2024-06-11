@@ -16,7 +16,7 @@ MonoBehaviour:
     supportShadowMask: 0
     supportSSR: 1
     supportSSRTransparent: 0
-    supportSSAO: 1
+    supportSSAO: 0
     supportSSGI: 1
     supportSubsurfaceScattering: 1
     sssSampleBudget:
@@ -142,14 +142,14 @@ MonoBehaviour:
       DLSSInjectionPoint: 0
       DLSSUseOptimalSettings: 0
       DLSSSharpness: 0
-      fsrOverrideSharpness: 0
-      fsrSharpness: 0.92
+      fsrOverrideSharpness: 1
+      fsrSharpness: 0.802
       maxPercentage: 100
       minPercentage: 70
       dynResType: 1
       upsampleFilter: 4
       forceResolution: 1
-      forcedPercentage: 70
+      forcedPercentage: 50
       lowResTransparencyMinimumThreshold: 0
       rayTracingHalfResThreshold: 50
     lowresTransparentSettings:

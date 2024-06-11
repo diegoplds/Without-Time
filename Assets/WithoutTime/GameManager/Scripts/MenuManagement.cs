@@ -58,7 +58,7 @@ namespace Dplds.Core
             creditsCanvas.SetActive(true);
             videoSettingsCanvas.SetActive(false);
             settingsCanvas.SetActive(false);
-            eventSystem.SetSelectedGameObject(menuCanvas.transform.GetChild(1).GetChild(1).gameObject);
+            eventSystem.SetSelectedGameObject(creditsCanvas.transform.GetChild(3).gameObject);
         }
         public void ShowVideoSettings()
         {
@@ -73,7 +73,7 @@ namespace Dplds.Core
             settingsCanvas.SetActive(false);
             videoSettingsCanvas.SetActive(false);
             audioSettingsCanvas.SetActive(true);
-            eventSystem.SetSelectedGameObject(audioSettingsCanvas.transform.GetChild(0).GetChild(1).GetChild(1).gameObject);
+            eventSystem.SetSelectedGameObject(audioSettingsCanvas.transform.GetChild(0).GetChild(0).GetChild(1).gameObject);
         }
         public void ShowControllerSettings()
         {
@@ -97,7 +97,10 @@ namespace Dplds.Core
         }
         #endregion
         
-      
+      public void OpenLink(string link)
+        {
+            Application.OpenURL(link);
+        }
         public void LoadScene(string scene = "menu")
         {
             if (eventSystem.enabled)

@@ -87,7 +87,7 @@ namespace Dplds.Editor
                 System.IO.File.WriteAllBytes(path, pngData);
                 AssetDatabase.Refresh();
             }
-            // Destrua as texturas temporárias após salvar o Mask Map
+            //Destroy temporary textures after saving the Mask Map
             if (metallicTemp)
                 DestroyImmediate(metallicTexture);
             if (detailTemp)

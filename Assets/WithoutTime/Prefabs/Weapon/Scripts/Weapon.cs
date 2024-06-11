@@ -6,6 +6,7 @@ namespace Dplds.Gameplay
     public class Weapon : MonoBehaviour
     {
         public bool CanShoot { get => canShoot; set => canShoot = value; }
+        
         #region Fields
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private int idWeapon;
@@ -126,7 +127,7 @@ namespace Dplds.Gameplay
             }
             return check;
         }
-        private void OnLevelWasLoaded(int level)
+        private void OnEnable()
         {
             CheckHasWeapon();
         }

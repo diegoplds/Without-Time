@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: dc2f8994351bc6146aaa66ba12d11549,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 42cb924cfa021f2478399ca5a2b27edd,
     type: 2}
 --- !u!196 &4
@@ -2579,7 +2580,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_HDRP.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_3da62f29-444c-4c00-96d4-e1899bac41c9
+    name: UM_OperatedMesh_86ec142e-9a68-42a5-8aa4-e9748697c59b
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 9f5f8f644abe63542a253365f9758ea6, type: 2}
     buidVersion:
@@ -2594,7 +2595,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 3da62f29-444c-4c00-96d4-e1899bac41c9
+  sourceMeshRendererGUID: 86ec142e-9a68-42a5-8aa4-e9748697c59b
   guid: fe413595-cc3d-4b02-95f6-bc56a824da85
   localOptions:
     RecalculateTangents: 0
@@ -3253,7 +3254,7 @@ MonoBehaviour:
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
-  m_VolumetricDimmer: 2.5
+  m_VolumetricDimmer: 1.4
   m_LightUnit: 2
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
@@ -3688,7 +3689,7 @@ MonoBehaviour:
   - Packages/com.tripolygon.umodeler-x/Resources/Materials/UModelerX_Gray_HDRP.mat
   currentMaterialIndex: -1
   renderableMesh:
-    name: UM_OperatedMesh_d1f7ad95-5707-4c67-8994-73c8df45bb69
+    name: UM_OperatedMesh_83dd9bbf-fd36-4d56-acbf-5887d21fa3fe
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: f793394e214e8a142a85312bd32af277, type: 2}
     buidVersion:
@@ -3703,7 +3704,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d1f7ad95-5707-4c67-8994-73c8df45bb69
+  sourceMeshRendererGUID: 83dd9bbf-fd36-4d56-acbf-5887d21fa3fe
   guid: 8303d4a7-ca80-4057-8b08-5355d2a9b6f2
   localOptions:
     RecalculateTangents: 0
@@ -4957,7 +4958,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Bricks/Brick 1.mat
   currentMaterialIndex: 1
   renderableMesh:
-    name: UM_OperatedMesh_d6d5877b-4d4e-427a-be39-5c90cd525bee
+    name: UM_OperatedMesh_138435da-4b32-4c04-8a36-30e058906a23
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 2713692f50a60b746975a1471488d07e, type: 2}
     buidVersion:
@@ -4972,7 +4973,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: d6d5877b-4d4e-427a-be39-5c90cd525bee
+  sourceMeshRendererGUID: 138435da-4b32-4c04-8a36-30e058906a23
   guid: f84d8b81-e1c3-4abc-9cf0-93001589a640
   localOptions:
     RecalculateTangents: 0
@@ -5312,7 +5313,7 @@ MonoBehaviour:
   m_LightAngle: 1
   m_MaxDepthBias: 0.001
   m_ShadowResolution:
-    m_Override: 512
+    m_Override: 256
     m_UseOverride: 1
     m_Level: 0
   m_ShadowDimmer: 1
@@ -5380,7 +5381,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -6037,7 +6038,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Emit/Light.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_f55ea572-5d56-4170-b28a-128bc802676a
+    name: UM_OperatedMesh_2e7f2902-2e20-4d8b-a7e4-5b8d002dbd46
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 3a6711cc6b05025408e12c0fa2828ff8, type: 2}
     buidVersion:
@@ -6052,7 +6053,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: f55ea572-5d56-4170-b28a-128bc802676a
+  sourceMeshRendererGUID: 2e7f2902-2e20-4d8b-a7e4-5b8d002dbd46
   guid: 290c8bb5-1df2-41ce-b5e8-ac731d6744ed
   localOptions:
     RecalculateTangents: 0
@@ -6544,7 +6545,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Metal/Metal 1.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_277dce76-df27-4c01-8406-a12947e362dc
+    name: UM_OperatedMesh_39829926-0a0e-4875-9b0f-b376b384dae9
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 32a17fc01429fb34d8f36677f85214f7, type: 2}
     buidVersion:
@@ -6559,7 +6560,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 277dce76-df27-4c01-8406-a12947e362dc
+  sourceMeshRendererGUID: 39829926-0a0e-4875-9b0f-b376b384dae9
   guid: 42c34a3e-69b1-4f79-a312-9873d1503ba3
   localOptions:
     RecalculateTangents: 0
@@ -7479,11 +7480,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5110205374071368897, guid: 5b4de87316077504eacb49355a8b9713, type: 3}
     - {fileID: 5656790749170769204, guid: 5b4de87316077504eacb49355a8b9713, type: 3}
+    - {fileID: 3530401166212959080, guid: 5b4de87316077504eacb49355a8b9713, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5370740314574855055, guid: 5b4de87316077504eacb49355a8b9713, type: 3}
     - {fileID: 7056782921510992878, guid: 5b4de87316077504eacb49355a8b9713, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3768186185236413247, guid: 5b4de87316077504eacb49355a8b9713,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1943492642}
     - targetCorrespondingSourceObject: {fileID: 2546949513909297640, guid: 5b4de87316077504eacb49355a8b9713,
         type: 3}
       insertIndex: -1
@@ -7519,7 +7525,7 @@ MonoBehaviour:
   m_LightDimmer: 3
   m_VolumetricDimmer: 1
   m_LightUnit: 0
-  m_FadeDistance: 10000
+  m_FadeDistance: 15
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
@@ -7608,7 +7614,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -7961,7 +7967,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Emit/Light.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_9f01a8b9-671f-40df-bbf3-8b8f258c5b72
+    name: UM_OperatedMesh_88c593e9-ac64-4cea-b4ae-86cfa7ae9563
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 4e0fb51eebe221e488fbd883d0c56e1f, type: 2}
     buidVersion:
@@ -7976,7 +7982,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 9f01a8b9-671f-40df-bbf3-8b8f258c5b72
+  sourceMeshRendererGUID: 88c593e9-ac64-4cea-b4ae-86cfa7ae9563
   guid: c7bd4f31-ef6c-4841-86b3-ed2e51c0ec23
   localOptions:
     RecalculateTangents: 0
@@ -12050,7 +12056,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Metal/Metal.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_b80d240d-8f73-4ed4-8e92-82120d4bc18d
+    name: UM_OperatedMesh_9b7fe462-fc2b-421f-980c-88bef6b0f883
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: fb8a3eb1400585349ae6f64d0571bac4, type: 2}
     buidVersion:
@@ -12065,7 +12071,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: b80d240d-8f73-4ed4-8e92-82120d4bc18d
+  sourceMeshRendererGUID: 9b7fe462-fc2b-421f-980c-88bef6b0f883
   guid: fae1876c-b5bf-4453-a4b6-5f724eb40fb2
   localOptions:
     RecalculateTangents: 0
@@ -13722,7 +13728,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Generic Color/White.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_e797b9b4-5bac-4d38-a081-ca75c18a4dae
+    name: UM_OperatedMesh_aa727ff0-6d3e-44cf-9b82-b874240df588
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: 97a66a33253e7d845a45484759db30f2, type: 2}
     buidVersion:
@@ -13737,7 +13743,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: e797b9b4-5bac-4d38-a081-ca75c18a4dae
+  sourceMeshRendererGUID: aa727ff0-6d3e-44cf-9b82-b874240df588
   guid: 1afa5f41-5454-40b6-b20e-627b6573249b
   localOptions:
     RecalculateTangents: 0
@@ -15060,7 +15066,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Metal/Metal.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_27b64564-1d37-4760-9be3-5ddbbb971bdd
+    name: UM_OperatedMesh_6773abca-2b37-4c4b-ba59-ffe5aa8fea20
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: cc41b1df6a0e3de44b1a36285fd3a906, type: 2}
     buidVersion:
@@ -15075,7 +15081,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 27b64564-1d37-4760-9be3-5ddbbb971bdd
+  sourceMeshRendererGUID: 6773abca-2b37-4c4b-ba59-ffe5aa8fea20
   guid: 4269770a-607c-4f4d-bbdb-12e4fe1e4121
   localOptions:
     RecalculateTangents: 0
@@ -15611,7 +15617,7 @@ MonoBehaviour:
   - Assets/WithoutTime/Art/Materials/Plastic/White.mat
   currentMaterialIndex: 0
   renderableMesh:
-    name: UM_OperatedMesh_73730b0f-2b77-4f4f-a457-13bd6d18a713
+    name: UM_OperatedMesh_b5b35993-d1d2-4ea1-b2c6-e343587c2490
     skinnedMesh: 0
     sharedMesh: {fileID: 4300000, guid: e14f35077d2ee554c9e1daf37a7592d5, type: 2}
     buidVersion:
@@ -15626,7 +15632,7 @@ MonoBehaviour:
     modifierList: []
     currentIndex: -1
   sourceMesh: {fileID: 0}
-  sourceMeshRendererGUID: 73730b0f-2b77-4f4f-a457-13bd6d18a713
+  sourceMeshRendererGUID: b5b35993-d1d2-4ea1-b2c6-e343587c2490
   guid: e00cdcd9-2114-4f15-a1c5-375cb9b245e0
   localOptions:
     RecalculateTangents: 0
@@ -17449,6 +17455,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa3d6f5a1bddf44e81a859ffb85d5bb, type: 3}
+--- !u!1 &1943492640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3768186185236413247, guid: 5b4de87316077504eacb49355a8b9713,
+    type: 3}
+  m_PrefabInstance: {fileID: 1008363899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1943492642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943492640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e7901aef4906a4c8cbbdf37f1d594c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: End
 --- !u!1 &1961908255 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4571431384550633794, guid: 80cac95fd98f8b442957ed0d2b21cf85,
